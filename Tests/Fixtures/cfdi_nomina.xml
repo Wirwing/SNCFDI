@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd http://www.sat.gob.mx/nomina http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina11.xsd"
+  xmlns:nomina="http://www.sat.gob.mx/nomina"
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="3.2"
+  serie="N"
+  folio="00001"
+  fecha="2014-01-15T13:01:59"
+  formaDePago="FormaDePago"
+  condicionesDePago="PAGONOMINA"
+  subTotal="4765.46"
+  Moneda="PESOS"
+  total="4765.46"
+  tipoDeComprobante="egreso"
+  metodoDePago="TRANSFERENCIA"
+  LugarExpedicion="MEXICO DF"
+  sello="qTzEwNUDvk/WpeFstpf/FLNmiHMxiL8pDTXGNb+DCFO0Z7SXMZJCim3JAlBw8Astvr0/jiVfo3WdWbaX88cC1l1+iipOLdedbFNHZUmsW86nC1YQHWw0S6mEiGH0ZxGa5KOl/1mrvPlDweeCiyYavNQeEuO1r0/ELobMi07w6ps="
+  certificado="MIIEdDCCA1ygAwIBAgIUMjAwMDEwMDAwMDAxMDAwMDU4NjcwDQYJKoZIhvcNAQEFBQAwggFvMRgwFgYDVQQDDA9BLkMuIGRlIHBydWViYXMxLzAtBgNVBAoMJlNlcnZpY2lvIGRlIEFkbWluaXN0cmFjacOzbiBUcmlidXRhcmlhMTgwNgYDVQQLDC9BZG1pbmlzdHJhY2nDs24gZGUgU2VndXJpZGFkIGRlIGxhIEluZm9ybWFjacOzbjEpMCcGCSqGSIb3DQEJARYaYXNpc25ldEBwcnVlYmFzLnNhdC5nb2IubXgxJjAkBgNVBAkMHUF2LiBIaWRhbGdvIDc3LCBDb2wuIEd1ZXJyZXJvMQ4wDAYDVQQRDAUwNjMwMDELMAkGA1UEBhMCTVgxGTAXBgNVBAgMEERpc3RyaXRvIEZlZGVyYWwxEjAQBgNVBAcMCUNveW9hY8OhbjEVMBMGA1UELRMMU0FUOTcwNzAxTk4zMTIwMAYJKoZIhvcNAQkCDCNSZXNwb25zYWJsZTogSMOpY3RvciBPcm5lbGFzIEFyY2lnYTAeFw0xMjA3MjcxNzAyMDBaFw0xNjA3MjcxNzAyMDBaMIHbMSkwJwYDVQQDEyBBQ0NFTSBTRVJWSUNJT1MgRU1QUkVTQVJJQUxFUyBTQzEpMCcGA1UEKRMgQUNDRU0gU0VSVklDSU9TIEVNUFJFU0FSSUFMRVMgU0MxKTAnBgNVBAoTIEFDQ0VNIFNFUlZJQ0lPUyBFTVBSRVNBUklBTEVTIFNDMSUwIwYDVQQtExxBQUEwMTAxMDFBQUEgLyBIRUdUNzYxMDAzNFMyMR4wHAYDVQQFExUgLyBIRUdUNzYxMDAzTURGUk5OMDkxETAPBgNVBAsTCFVuaWRhZCAxMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC2TTQSPONBOVxpXv9wLYo8jezBrb34i/tLx8jGdtyy27BcesOav2c1NS/Gdv10u9SkWtwdy34uRAVe7H0a3VMRLHAkvp2qMCHaZc4T8k47Jtb9wrOEh/XFS8LgT4y5OQYo6civfXXdlvxWU/gdM/e6I2lg6FGorP8H4GPAJ/qCNwIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQUFAAOCAQEATxMecTpMbdhSHo6KVUg4QVF4Op2IBhiMaOrtrXBdJgzGotUFcJgdBCMjtTZXSlq1S4DG1jr8p4NzQlzxsdTxaB8nSKJ4KEMgIT7E62xRUj15jI49qFz7f2uMttZLNThipunsN/NF1XtvESMTDwQFvas/Ugig6qwEfSZc0MDxMpKLEkEePmQwtZD+zXFSMVa6hmOu4M+FzGiRXbj4YJXn9Myjd8xbL/c+9UIcrYoZskxDvMxc6/6M3rNNDY3OFhBK+V/sPMzWWGt8S1yjmtPfXgFs1t65AZ2hcTwTAuHrKwDatJ1ZPfa482ZBROAAX1waz7WwXp0gso7sDCm2/yUVww=="
+  noCertificado="20001000000100005867"
+  NumCtaPago="43200101">
+  <cfdi:Emisor rfc="AAA010101AAA" nombre="ACCEM SERVICIOS EMPRESARIALES SC">
+    <cfdi:DomicilioFiscal pais="México" calle="AV. HIDALGO" estado="MEXICO, D.F." colonia="GUERRERO" municipio="MEXICO" noExterior="14" codigoPostal="06300" />
+    <cfdi:RegimenFiscal Regimen="Regimen General de Ley" />
+  </cfdi:Emisor>
+  <cfdi:Receptor rfc="JUAN680116AAA" nombre="Juanito Pérez Niño">
+    <cfdi:Domicilio calle="Calle Verde" noExterior="1234" noInterior="456" colonia="Col. Arboles" localidad="Ciudad de Tegucigalpa" municipio="Municipio de Torres" estado="Nuevo Leon" pais="México" codigoPostal="38294" />
+  </cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto cantidad="1" descripcion="QUINCENA 22" importe="4457.96" valorUnitario="4457.96" unidad="SERVICIO" noIdentificacion="00000022"/>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos totalImpuestosRetenidos="627.07" totalImpuestosTrasladados="0.00">
+    <cfdi:Traslados>
+      <cfdi:Traslado importe="0.00" impuesto="IVA" tasa="0.00"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento>
+    <nomina:Nomina Version="1.1" RegistroPatronal="N4515588991" NumEmpleado="000012" CURP="JUAN680116MAZBCÑ90" TipoRegimen="1" NumSeguridadSocial="13099903896" FechaPago="2014-01-15" FechaInicialPago="2014-01-01" FechaFinalPago="2014-01-15" NumDiasPagados="12" Departamento="ADMINISTRACION" CLABE="230230302302302309" Banco="123" FechaInicioRelLaboral="2013-11-30" Antiguedad="8" Puesto="COORDONADOR C3" TipoContrato="PLANTA" TipoJornada="COMPLETA" PeriodicidadPago="QUINCENAL" SalarioBaseCotApor="416.67" RiesgoPuesto="3" SalarioDiarioIntegrado="551.19">
+      <nomina:Percepciones TotalGravado="7343.75" TotalExento="937.50">
+        <nomina:Percepcion TipoPercepcion="001" Clave="00001" Concepto="SUELDOS" ImporteGravado="6250.00" ImporteExento="0.00"/>
+        <nomina:Percepcion TipoPercepcion="004" Clave="00003" Concepto="TIEMPO EXTRA DOBLES" ImporteGravado="312.50" ImporteExento="312.50"/>
+        <nomina:Percepcion TipoPercepcion="004" Clave="00004" Concepto="TIEMPO EXTRA TRIPLES" ImporteGravado="781.25" ImporteExento="0.00"/>
+        <nomina:Percepcion TipoPercepcion="009" Clave="00043" Concepto="FONDO DE AHORRO" ImporteGravado="0.00" ImporteExento="625.00"/>
+      </nomina:Percepciones>
+      <nomina:Deducciones TotalGravado="1249.99" TotalExento="2265.80">
+        <nomina:Deduccion TipoDeduccion="001" Clave="00503" Concepto="FALTA INJUSTIFICADA" ImporteGravado="416.66" ImporteExento="0.00"/>
+        <nomina:Deduccion TipoDeduccion="036" Clave="00507" Concepto="ISR RETENIDO" ImporteGravado="0.00" ImporteExento="747.07"/>
+        <nomina:Deduccion TipoDeduccion="009" Clave="00517" Concepto="FONDO DE AHORRO EMPRESA" ImporteGravado="0.00" ImporteExento="625.00" />
+        <nomina:Deduccion TipoDeduccion="009" Clave="00518" Concepto="FONDO DE AHORRO EMPLEADO" ImporteGravado="0.00" ImporteExento="625.00" />
+        <nomina:Deduccion TipoDeduccion="040" Clave="00533" Concepto="IMSS ENF Y MATERNIDAD" ImporteGravado="0.00" ImporteExento="63.34" />
+        <nomina:Deduccion TipoDeduccion="040" Clave="00534" Concepto="IMSS INVALIDES Y VIDA" ImporteGravado="0.00" ImporteExento="44.78" />
+        <nomina:Deduccion TipoDeduccion="040" Clave="00535" Concepto="IMSS CESANTIA Y VEJEZ" ImporteGravado="0.00" ImporteExento="80.61" />
+        <nomina:Deduccion TipoDeduccion="013" Clave="00542" Concepto="FONACOT" ImporteGravado="0.00" ImporteExento="200.00" />
+        <nomina:Deduccion TipoDeduccion="036" Clave="00570" Concepto="SUBSIDIO AL ISR" ImporteGravado="0.00" ImporteExento="-120.00" />
+        <nomina:Deduccion TipoDeduccion="001" Clave="00574" Concepto="INCAPACIDAD POR ENFERMEDAD GENERAL" ImporteGravado="833.33" ImporteExento="0.00" />
+      </nomina:Deducciones>
+      <nomina:Incapacidades>
+        <nomina:Incapacidad DiasIncapacidad="2" TipoIncapacidad="3" Descuento="833.33"/>
+      </nomina:Incapacidades>
+      <nomina:HorasExtras>
+        <nomina:HorasExtra Dias="2" TipoHoras="Dobles" HorasExtra="6" ImportePagado="625.00"/>
+        <nomina:HorasExtra Dias="1" TipoHoras="Triples" HorasExtra="5" ImportePagado="781.25"/>
+      </nomina:HorasExtras>
+    </nomina:Nomina>
+  </cfdi:Complemento>
+</cfdi:Comprobante>
