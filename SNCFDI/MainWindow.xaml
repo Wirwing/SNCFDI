@@ -3,7 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button Content="Abrir Excel" HorizontalAlignment="Left" Margin="302,80,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+
+        <Button Content="Abrir Excel" Margin="0,10,10,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="75"/>
+        <ListView Margin="10,71,10,66">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>
