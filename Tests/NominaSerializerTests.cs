@@ -16,11 +16,12 @@ namespace Tests
     public class NominaSerializerTests
     {
 
-        [TestMethod]
-        public void TestNominaNodeSerializationAndValidation()
-        {
+        private Nomina nomina;
 
-            Nomina nomina = new Nomina();
+        [TestInitialize]
+        public void initMocks()
+        {
+            nomina = new Nomina();
 
             nomina.RegistroPatronal = "123456789ABCDEFGDTU";
             nomina.NumEmpleado = "43437";
@@ -32,7 +33,7 @@ namespace Tests
             nomina.NumDiasPagados = 7;
             nomina.Departamento = "Sistemas";
             nomina.CLABE = "123456789123456789";
-            nomina.Banco = 1;
+            nomina.Banco = 1.ToString("000");
             nomina.FechaInicioRelLaboral = new DateTime(2011, 10, 01);
             nomina.Antiguedad = 10;
             nomina.Puesto = "Lider de proyecto";
@@ -64,15 +65,58 @@ namespace Tests
 
             nomina.Percepciones = percepcionData;
 
-            //String fileName = "output.xml";
 
-            //using (Stream stream = File.Open(fileName, FileMode.Create))
-            //{
+            //Deducciones
 
-            //    XmlSerializer serializer = new XmlSerializer(typeof(Nomina));
-            //    serializer.Serialize(stream, nomina);
-            //    stream.Flush();
-            //}
+            Deducciones deduccionesData = new Deducciones();
+            deduccionesData.TotalExento = new Decimal(0.3);
+            deduccionesData.TotalGravado = new Decimal(0.4);
+
+
+            Deduccion deduccion = new Deduccion();
+            deduccion.TipoDeduccion = 1.ToString("000");
+            deduccion.Clave = "100";
+            deduccion.Concepto = "Sueldo";
+            deduccion.ImporteGravado = new Decimal(1300);
+            deduccion.ImporteExento = new decimal(0.0);
+
+            List<Deduccion> deducciones = new List<Deduccion>();
+            deducciones.Add(deduccion);
+            deduccionesData.Deduccion = deducciones.ToArray();
+
+            nomina.Deducciones = deduccionesData;
+
+            //Incapacidades
+
+            Incapacidad incapacidad = new Incapacidad();
+            incapacidad.DiasIncapacidad = 10;
+            incapacidad.TipoIncapacidad = 1;
+            incapacidad.Descuento = 30;
+            
+            List<Incapacidad> incapacidades = new List<Incapacidad>();
+            incapacidades.Add(incapacidad);
+
+            nomina.Incapacidades = incapacidades.ToArray();
+
+            //Horas Extras
+            NominaHorasExtra horaExtra = new NominaHorasExtra();
+            horaExtra.Dias = 2;
+            horaExtra.TipoHoras = TipoHorasExtra.Dobles;
+            horaExtra.HorasExtra = 10;
+            horaExtra.ImportePagado = new Decimal(100.03);
+
+            List<NominaHorasExtra> horasExtra = new List<NominaHorasExtra>();
+            horasExtra.Add(horaExtra);
+
+            nomina.HorasExtras = horasExtra.ToArray();
+
+        }
+
+        [TestMethod]
+        public void TestNominaNodeSerializationAndValidation()
+        {
+
+            //Serialization
 
             XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
             ns.Add("nomina", "http://www.sat.gob.mx/nomina");
@@ -87,6 +131,8 @@ namespace Tests
                 stream.Seek(0, SeekOrigin.Begin);
                 document.Load(stream);
             }
+
+            //Debug.Write(document.OuterXml);
 
             XmlSchemaSet schemaSet = new XmlSchemaSet();
             XmlSchema schema;
@@ -140,7 +186,6 @@ namespace Tests
 
             Debug.Write(document.OuterXml);
 
-
             XmlSchemaSet schemaSet = new XmlSchemaSet();
             XmlSchema schema;
 
@@ -187,6 +232,17 @@ namespace Tests
             Debug.Write(schema.ToString());
 
         }
+
+        //String fileName = "output.xml";
+
+        //using (Stream stream = File.Open(fileName, FileMode.Create))
+        //{
+
+        //    XmlSerializer serializer = new XmlSerializer(typeof(Nomina));
+        //    serializer.Serialize(stream, nomina);
+        //    stream.Flush();
+        //}
+
 
     }
 

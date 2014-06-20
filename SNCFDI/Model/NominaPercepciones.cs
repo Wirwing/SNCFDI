@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SNCFDI.Model
 {
@@ -33,9 +34,9 @@ namespace SNCFDI.Model
     public partial class Percepcion
     {
 
-        [NonSerialized()]
-        public int NumEmpleado { get; set; }
-
+        [XmlIgnore]
+        public int? NumEmpleado { get; set; }
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string TipoPercepcion { get; set; }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SNCFDI.Model
+namespace SNCFDI.Service.Util
 {
     class NominaValue
     {
@@ -33,4 +33,50 @@ namespace SNCFDI.Model
         public const int SALARIO_DIARIO_INTEGRADO = 20;
 
     }
+
+    class PercepcionValue
+    {
+
+        public const int NUM_EMPLEADO = 0;
+        public const int TIPO_PERCEPCION = 1;
+        public const int CLAVE = 2;
+        public const int CONCEPTO = 3;
+        public const int IMPORTE_AGRAVADO = 4;
+        public const int IMPORTE_EXENTO = 5;
+
+    }
+
+    class DeduccionValue
+    {
+
+        public const int NUM_EMPLEADO = 0;
+        public const int TIPO_DEDUCCION = 1;
+        public const int CLAVE = 2;
+        public const int CONCEPTO = 3;
+        public const int IMPORTE_AGRAVADO = 4;
+        public const int IMPORTE_EXENTO = 5;
+
+    }
+
+    class HoraExtraValue
+    {
+
+        public const int NUM_EMPLEADO = 0;
+        public const int DIAS = 1;
+        public const int TIPO_HORAS = 2;
+        public const int HORAS_EXTRA = 3;
+        public const int IMPORTE_PAGADO = 4;
+
+    }
+
+    class IncapacidadValue
+    {
+        public const int NUM_EMPLEADO = 0;
+        public const int DIAS_INCAPACIDAD = 1;
+        public const int TIPO_INCAPACIDAD = 2;
+        public const int DESCUENTO = 3;
+
+    }
+
+
 }

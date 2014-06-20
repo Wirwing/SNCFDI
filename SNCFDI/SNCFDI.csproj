@@ -79,9 +79,9 @@
     <Compile Include="Model\NominaHorasExtra.cs" />
     <Compile Include="Model\NominaIncapacidad.cs" />
     <Compile Include="Model\NominaPercepciones.cs" />
-    <Compile Include="Model\PercepcionValue.cs" />
-    <Compile Include="Model\NominaValue.cs" />
-    <Compile Include="Service\CellParser.cs" />
+    <Compile Include="Service\Util\HeaderValues.cs" />
+    <Compile Include="Service\CellDataParser.cs" />
+    <Compile Include="Service\EntityParser.cs" />
     <Compile Include="Service\ExcelReader.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

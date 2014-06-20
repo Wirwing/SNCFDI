@@ -8,19 +8,26 @@ namespace SNCFDI.Model
 {
     public class Empleado
     {
-        
-        public const int MINIMUM_EMPLOYEE_DATA_ROWS = 2;
+
+        public const int MINIMUM_EMPLOYEE_DATA_ROWS = 1;
 
         private int numero;
         private Nomina nomina;
         private Boolean validData;
         private String parsingError;
         private List<Percepcion> percepcionesList;
+        private List<Deduccion> deduccionesList;
+        private List<Incapacidad> incapacidadesList;
+        private List<NominaHorasExtra> horasExtraList;
 
         public Empleado()
         {
             this.validData = false;
             this.percepcionesList = new List<Percepcion>();
+            this.deduccionesList = new List<Deduccion>();
+            this.incapacidadesList = new List<Incapacidad>();
+            this.horasExtraList = new List<NominaHorasExtra>();
+
         }
 
         public String ParsingError
@@ -38,7 +45,7 @@ namespace SNCFDI.Model
         public Nomina Nomina
         {
             get { return nomina; }
-            set {  nomina = value; }
+            set { nomina = value; }
         }
 
         public Boolean ValidData
@@ -53,5 +60,22 @@ namespace SNCFDI.Model
             set { percepcionesList = value; }
         }
 
+        public List<Deduccion> ParsedDeducciones
+        {
+            get { return deduccionesList; }
+            set { deduccionesList = value; }
+        }
+
+        public List<Incapacidad> ParsedIncapacidades
+        {
+            get { return incapacidadesList; }
+            set { incapacidadesList = value; }
+        }
+
+        public List<NominaHorasExtra> ParsedHorasExtra
+        {
+            get { return horasExtraList; }
+            set { horasExtraList = value; }
+        }
     }
 }

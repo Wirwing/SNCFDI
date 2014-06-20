@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace SNCFDI.Model
 {
 
-    /// <comentarios/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -15,83 +15,29 @@ namespace SNCFDI.Model
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.sat.gob.mx/nomina")]
     public partial class NominaHorasExtra
     {
-
-        private int diasField;
-
-        private NominaHorasExtraTipoHoras tipoHorasField;
-
-        private int horasExtraField;
-
-        private decimal importePagadoField;
-
-        /// <comentarios/>
+        [XmlIgnore]
+        public int? NumEmpleado { get; set; }
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int Dias
-        {
-            get
-            {
-                return this.diasField;
-            }
-            set
-            {
-                this.diasField = value;
-            }
-        }
+        public int Dias { get; set; }
 
-        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public NominaHorasExtraTipoHoras TipoHoras
-        {
-            get
-            {
-                return this.tipoHorasField;
-            }
-            set
-            {
-                this.tipoHorasField = value;
-            }
-        }
+        public TipoHorasExtra TipoHoras { get; set; }
 
-        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int HorasExtra
-        {
-            get
-            {
-                return this.horasExtraField;
-            }
-            set
-            {
-                this.horasExtraField = value;
-            }
-        }
+        public int HorasExtra { get; set; }
 
-        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal ImportePagado
-        {
-            get
-            {
-                return this.importePagadoField;
-            }
-            set
-            {
-                this.importePagadoField = value;
-            }
-        }
+        public decimal ImportePagado { get; set; }
     }
 
-    /// <comentarios/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.sat.gob.mx/nomina")]
-    public enum NominaHorasExtraTipoHoras
+    public enum TipoHorasExtra
     {
 
-        /// <comentarios/>
         Dobles,
-
-        /// <comentarios/>
         Triples,
     }
 

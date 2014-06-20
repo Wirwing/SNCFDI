@@ -36,7 +36,29 @@
     </cfdi:Traslados>
   </cfdi:Impuestos>
   <cfdi:Complemento>
-    <nomina:Nomina Version="1.1" RegistroPatronal="N4515588991" NumEmpleado="000012" CURP="JUAN680116MAZBCÑ90" TipoRegimen="1" NumSeguridadSocial="13099903896" FechaPago="2014-01-15" FechaInicialPago="2014-01-01" FechaFinalPago="2014-01-15" NumDiasPagados="12" Departamento="ADMINISTRACION" CLABE="230230302302302309" Banco="123" FechaInicioRelLaboral="2013-11-30" Antiguedad="8" Puesto="COORDONADOR C3" TipoContrato="PLANTA" TipoJornada="COMPLETA" PeriodicidadPago="QUINCENAL" SalarioBaseCotApor="416.67" RiesgoPuesto="3" SalarioDiarioIntegrado="551.19">
+    <nomina:Nomina Version="1.1" 
+                   RegistroPatronal="N4515588991" 
+                   NumEmpleado="000012" 
+                   CURP="JUAN680116MAZBCÑ90" 
+                   TipoRegimen="1" 
+                   NumSeguridadSocial="13099903896" 
+                   FechaPago="2014-01-15" 
+                   FechaInicialPago="2014-01-01" 
+                   FechaFinalPago="2014-01-15" 
+                   NumDiasPagados="12" 
+                   Departamento="ADMINISTRACION" 
+                   CLABE="230230302302302309" 
+                   Banco="123" 
+                   FechaInicioRelLaboral="2013-11-30" 
+                   Antiguedad="8" 
+                   Puesto="COORDONADOR C3" 
+                   TipoContrato="PLANTA"
+                   TipoJornada="COMPLETA"
+                   PeriodicidadPago="QUINCENAL"
+                   SalarioBaseCotApor="416.67"
+                   RiesgoPuesto="3" 
+                   SalarioDiarioIntegrado="551.19">
+      
       <nomina:Percepciones TotalGravado="7343.75" TotalExento="937.50">
         <nomina:Percepcion TipoPercepcion="001" Clave="00001" Concepto="SUELDOS" ImporteGravado="6250.00" ImporteExento="0.00"/>
         <nomina:Percepcion TipoPercepcion="004" Clave="00003" Concepto="TIEMPO EXTRA DOBLES" ImporteGravado="312.50" ImporteExento="312.50"/>

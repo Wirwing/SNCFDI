@@ -15,21 +15,48 @@ namespace SNCFDI.Service
     public class ExcelReader
     {
 
+        private const int EmployeeSheet = 0;
+        private const int PercepcionesSheet = 1;
+        private const int DeduccionesSheet = 2;
+        private const int IncapacidadesSheet = 3;
+        private const int HorasExtraSheet = 4;
+
         private IWorkbook workBook;
+        private EntityParser<Empleado> empleadoParser;
+        private EntityParser<Percepcion> percepcionParser;
+        private EntityParser<Deduccion> deduccionParser;
+        private EntityParser<Incapacidad> incapacidadParser;
+        private EntityParser<NominaHorasExtra> horasExtraParser;
 
-        public void readFile(String fileName)
+        public ExcelReader(String fileName)
         {
-
-
             FileStream stream = new FileStream(fileName, FileMode.Open);
             workBook = WorkbookFactory.Create(stream);
 
             stream.Close();
 
+            empleadoParser = new EmployeeParser();
+            percepcionParser = new PercepcionParser();
+            deduccionParser = new DeduccionParser();
+            incapacidadParser = new IncapacidadParser();
+            horasExtraParser = new HorasExtraParser();
 
         }
 
-        private void ParseEmpleados(out List<Empleado> valid, out List<Empleado> invalid)
+        public void readFile()
+        {
+            List<Empleado> valid;
+            List<Empleado> invalid;
+
+            ParseEmpleados(out valid, out invalid);
+            ParsePercepciones(valid);
+            ParseDeducciones(valid);
+            ParseIncapacidades(valid);
+            ParseHorasExtras(valid);
+
+        }
+
+        public void ParseEmpleados(out List<Empleado> valid, out List<Empleado> invalid)
         {
 
             valid = new List<Empleado>();
@@ -37,7 +64,7 @@ namespace SNCFDI.Service
 
             Empleado empleado;
             IRow currentRow;
-            ISheet sheet = workBook.GetSheetAt(0);
+            ISheet sheet = workBook.GetSheetAt(ExcelReader.EmployeeSheet);
 
             int rowCount = sheet.LastRowNum;
 
@@ -55,31 +82,28 @@ namespace SNCFDI.Service
             {
 
                 currentRow = rowEnumator.Current as IRow;
-                empleado = this.ParseEmpleado(currentRow);
+                empleado = empleadoParser.Parse(currentRow);
 
                 if (empleado.ValidData)
                     valid.Add(empleado);
                 else
                     invalid.Add(empleado);
 
-
             }
 
         }
 
-        private void ParsePercepciones(List<Empleado> employees)
+        public void ParsePercepciones(List<Empleado> employees)
         {
 
             Percepcion percepcion;
             IRow currentRow;
-            ISheet sheet = workBook.GetSheetAt(1);
+            ISheet sheet = workBook.GetSheetAt(ExcelReader.PercepcionesSheet);
 
             IEnumerator rowEnumator = sheet.GetRowEnumerator();
 
             //Ignore headers
             rowEnumator.MoveNext();
-
-            int? numEmpleado;
 
             Empleado employee;
 
@@ -87,12 +111,12 @@ namespace SNCFDI.Service
             {
 
                 currentRow = rowEnumator.Current as IRow;
-                percepcion = this.ParsePercepcion(currentRow, numEmpleado);
+                percepcion = percepcionParser.Parse(currentRow);
 
-                if (numEmpleado.HasValue)
+                if (percepcion.NumEmpleado.HasValue)
                 {
-                    employee = employees.SingleOrDefault(emp => emp.Numero == numEmpleado.Value);
-                    if (employee != null) 
+                    employee = employees.SingleOrDefault(emp => emp.Numero == percepcion.NumEmpleado.Value);
+                    if (employee != null)
                         employee.ParsedPercepciones.Add(percepcion);
                 }
 
@@ -100,160 +124,93 @@ namespace SNCFDI.Service
 
         }
 
-        private Empleado ParseEmpleado(IRow row)
+        public void ParseDeducciones(List<Empleado> employees)
         {
+            Deduccion deduccion;
+            IRow currentRow;
+            ISheet sheet = workBook.GetSheetAt(ExcelReader.DeduccionesSheet);
 
-            Empleado empleado = new Empleado();
-            Nomina nomina = new Nomina();
+            IEnumerator rowEnumator = sheet.GetRowEnumerator();
 
-            String stringValue;
-            int? intValue;
-            decimal? decimalValue;
-            Nullable<DateTime> dateValue;
+            //Ignore headers
+            rowEnumator.MoveNext();
 
-            ICell cell = row.GetCell(NominaValue.NUM_EMPLEADO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            intValue = CellParser.AsInteger(cell);
-            if (intValue.HasValue)
+            Empleado employee;
+
+            while (rowEnumator.MoveNext())
             {
-                nomina.NumEmpleado = intValue.Value.ToString();
-                empleado.Numero = intValue.Value;
-                empleado.ValidData = true;
+
+                currentRow = rowEnumator.Current as IRow;
+                deduccion = deduccionParser.Parse(currentRow);
+
+                if (deduccion.NumEmpleado.HasValue)
+                {
+                    employee = employees.SingleOrDefault(emp => emp.Numero == deduccion.NumEmpleado.Value);
+                    if (employee != null)
+                        employee.ParsedDeducciones.Add(deduccion);
+                }
+
             }
-            else
-            {
-                empleado.ValidData = false;
-                empleado.ParsingError = "Empleado en la fila " + row.RowNum.ToString() + " no cuenta con dato NumEmpleado";
-                return empleado;
-            }
-
-            cell = row.GetCell(NominaValue.CURP, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.CURP = stringValue;
-
-            cell = row.GetCell(NominaValue.TIPO_REGIMEN, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            intValue = CellParser.AsInteger(cell);
-            if (intValue.HasValue) nomina.TipoRegimen = intValue.Value;
-
-            cell = row.GetCell(NominaValue.FECHA_PAGO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            dateValue = CellParser.AsDateTime(cell);
-            if (dateValue.HasValue) nomina.FechaPago = dateValue.Value;
-
-            cell = row.GetCell(NominaValue.FECHA_INICIAL_PAGO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            dateValue = CellParser.AsDateTime(cell);
-            if (dateValue.HasValue) nomina.FechaInicialPago = dateValue.Value;
-
-            cell = row.GetCell(NominaValue.FECHA_FINAL_PAGO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            dateValue = CellParser.AsDateTime(cell);
-            if (dateValue.HasValue) nomina.FechaFinalPago = dateValue.Value;
-
-            cell = row.GetCell(NominaValue.NUM_DIAS_PAGADOS, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            intValue = CellParser.AsInteger(cell);
-            if (intValue.HasValue) nomina.NumDiasPagados = intValue.Value;
-
-            cell = row.GetCell(NominaValue.PERIODICIDAD_PAGO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.PeriodicidadPago = stringValue;
-
-            //Campos opcionales
-            cell = row.GetCell(NominaValue.REGISTRO_PATRONAL, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.RegistroPatronal = stringValue;
-
-            cell = row.GetCell(NominaValue.NUM_SEGURIDAD_SOCIAL, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.NumSeguridadSocial = stringValue;
-
-            cell = row.GetCell(NominaValue.DEPARTAMENTO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.Departamento = stringValue;
-
-            cell = row.GetCell(NominaValue.CLABE, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.CLABE = stringValue;
-
-            cell = row.GetCell(NominaValue.BANCO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            intValue = CellParser.AsInteger(cell);
-            if (intValue.HasValue) nomina.Banco = intValue.Value;
-
-            cell = row.GetCell(NominaValue.FECHA_INICIO_LABORAL, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            dateValue = CellParser.AsDateTime(cell);
-            if (dateValue.HasValue) nomina.FechaInicioRelLaboral = dateValue.Value;
-
-            cell = row.GetCell(NominaValue.ANTIGUEDAD, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            intValue = CellParser.AsInteger(cell);
-            if (intValue.HasValue) nomina.Antiguedad = intValue.Value;
-
-            cell = row.GetCell(NominaValue.PUESTO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.Puesto = stringValue;
-
-            cell = row.GetCell(NominaValue.TIPO_CONTRATO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.TipoContrato = stringValue;
-
-            cell = row.GetCell(NominaValue.TIPO_JORNADA, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) nomina.TipoJornada = stringValue;
-
-            cell = row.GetCell(NominaValue.SALARIO_BASE, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            decimalValue = CellParser.AsDecimal(cell);
-            if (decimalValue.HasValue) nomina.SalarioBaseCotApor = decimalValue.Value;
-
-            cell = row.GetCell(NominaValue.RIESGO_PUESTO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            intValue = CellParser.AsInteger(cell);
-            if (intValue.HasValue) nomina.RiesgoPuesto = intValue.Value;
-
-            cell = row.GetCell(NominaValue.SALARIO_DIARIO_INTEGRADO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            intValue = CellParser.AsInteger(cell);
-            if (intValue.HasValue) nomina.SalarioDiarioIntegrado = intValue.Value;
-
-            empleado.Nomina = nomina;
-
-            return empleado;
-
         }
 
-        private Percepcion ParsePercepcion(IRow row, out int? numeroEmpleado)
+        public void ParseIncapacidades(List<Empleado> employees)
         {
+            Incapacidad incapacidad;
+            IRow currentRow;
+            ISheet sheet = workBook.GetSheetAt(ExcelReader.IncapacidadesSheet);
 
-            numeroEmpleado = null;
-            Percepcion percepcion = new Percepcion();
+            IEnumerator rowEnumator = sheet.GetRowEnumerator();
 
-            String stringValue;
-            int? intValue;
-            decimal? decimalValue;
-            Nullable<DateTime> dateValue;
+            //Ignore headers
+            rowEnumator.MoveNext();
 
-            ICell cell = row.GetCell(PercepcionValue.NUM_EMPLEADO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            intValue = CellParser.AsInteger(cell);
-            if (intValue.HasValue)
+            Empleado employee;
+
+            while (rowEnumator.MoveNext())
             {
-                numeroEmpleado = intValue.Value;
+
+                currentRow = rowEnumator.Current as IRow;
+                incapacidad = incapacidadParser.Parse(currentRow);
+
+                if (incapacidad.NumEmpleado.HasValue)
+                {
+                    employee = employees.SingleOrDefault(emp => emp.Numero == incapacidad.NumEmpleado.Value);
+                    if (employee != null)
+                        employee.ParsedIncapacidades.Add(incapacidad);
+                }
+
             }
-
-            cell = row.GetCell(PercepcionValue.TIPO_PERCEPCION, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) percepcion.TipoPercepcion = stringValue;
-
-            cell = row.GetCell(PercepcionValue.CLAVE, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) percepcion.Clave = stringValue;
-
-            cell = row.GetCell(PercepcionValue.CONCEPTO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            stringValue = CellParser.AsString(cell);
-            if (stringValue != null) percepcion.Concepto = stringValue;
-
-            cell = row.GetCell(PercepcionValue.IMPORTE_AGRAVADO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            decimalValue = CellParser.AsDecimal(cell);
-            if (decimalValue.HasValue) percepcion.ImporteGravado = decimalValue.Value;
-
-            cell = row.GetCell(PercepcionValue.IMPORTE_EXENTO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
-            decimalValue = CellParser.AsDecimal(cell);
-            if (decimalValue.HasValue) percepcion.ImporteExento = decimalValue.Value;
-
-            return percepcion;
-
         }
+
+        public void ParseHorasExtras(List<Empleado> employees)
+        {
+            NominaHorasExtra horaExtra;
+            IRow currentRow;
+            ISheet sheet = workBook.GetSheetAt(ExcelReader.HorasExtraSheet);
+
+            IEnumerator rowEnumator = sheet.GetRowEnumerator();
+
+            //Ignore headers
+            rowEnumator.MoveNext();
+
+            Empleado employee;
+
+            while (rowEnumator.MoveNext())
+            {
+
+                currentRow = rowEnumator.Current as IRow;
+                horaExtra = horasExtraParser.Parse(currentRow);
+
+                if (horaExtra.NumEmpleado.HasValue)
+                {
+                    employee = employees.SingleOrDefault(emp => emp.Numero == horaExtra.NumEmpleado.Value);
+                    if (employee != null)
+                        employee.ParsedHorasExtra.Add(horaExtra);
+                }
+
+            }
+        }
+
 
     }
 }

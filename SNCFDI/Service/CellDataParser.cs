@@ -1,4 +1,5 @@
 ﻿using NPOI.SS.UserModel;
+using SNCFDI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SNCFDI.Service
 {
-    class CellParser
+    class CellDataParser
     {
 
         public static String AsString(ICell cell)
@@ -27,7 +28,7 @@ namespace SNCFDI.Service
         {
             Nullable<DateTime> value = null;
 
-            if (cell != null && cell.CellType.CompareTo(CellType.String) == 0)
+            if (cell != null)
             {
                 value = cell.DateCellValue;
             }
@@ -75,6 +76,22 @@ namespace SNCFDI.Service
             return value;
 
         }
+
+        public static Nullable<TipoHorasExtra> AsTipoHoraExtra(ICell cell)
+        {
+            Nullable<TipoHorasExtra> value = null;
+
+            try
+            {
+                if (cell != null && cell.CellType.CompareTo(CellType.String) == 0)
+                    value = (TipoHorasExtra)Enum.Parse(typeof(TipoHorasExtra), cell.StringCellValue);
+            }
+            catch (Exception) { }
+
+            return value;
+
+        }
+
 
     }
 }
