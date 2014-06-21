@@ -1,17 +1,82 @@
 ﻿<Window x:Class="SNCFDI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        xmlns:converters="clr-namespace:SNCFDI.ViewModel.Converters"
+        Title="MainWindow" Height="460" Width="720">
 
-        <Button Content="Abrir Excel" Margin="0,10,10,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="75"/>
-        <ListView Margin="10,71,10,66">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+    <Window.Resources>
+        <converters:SchemaCountConverter x:Key="schemaConverter" />
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Button Content="Abrir Excel" Margin="32,24,0,0" VerticalAlignment="Top" 
+                    IsEnabled="{Binding Properties.CanLoadData, Mode=OneWay}"
+                    Click="Load_DataSource_Click" Height="28" 
+                    HorizontalAlignment="Left" 
+                    Width="85"/>
+            <ListView x:Name="employeeList" ItemsSource="{Binding Empleados}" Margin="10,71,10,66">
+                <ListView.Resources>
+                    <Style TargetType="ListViewItem">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=ValidData}" Value="False">
+                                <Setter Property="Background" Value="Red" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="60" Header="Número" DisplayMemberBinding="{Binding Numero}"/>
+                        <GridViewColumn Width="160" Header="CURP" DisplayMemberBinding="{Binding Nomina.CURP}"/>
+                        <GridViewColumn Width="100" Header="Tipo de Régimen" DisplayMemberBinding="{Binding Nomina.TipoRegimen}"/>
+                        <GridViewColumn Width="120" Header="Fecha de Pago" DisplayMemberBinding="{Binding Nomina.FechaPago, StringFormat=d}"/>
+                        <GridViewColumn Width="120" Header="Fecha Final Pago" DisplayMemberBinding="{Binding Nomina.FechaInicialPago, StringFormat=d}"/>
+                        <GridViewColumn Width="120" Header="Fecha Inicial Pago" DisplayMemberBinding="{Binding Nomina.FechaFinalPago, StringFormat=d}"/>
+                        <GridViewColumn Width="80" Header="# días pagados" DisplayMemberBinding="{Binding Nomina.NumDiasPagados}"/>
+                        <GridViewColumn Width="80" Header="Periocidad Pago" DisplayMemberBinding="{Binding Nomina.PeriodicidadPago}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Content="Cargar Esquema" Margin="0,24,22,0" VerticalAlignment="Top" Click="Load_Schema_Click" Height="28" HorizontalAlignment="Right" Width="117"/>
+
+        </Grid>
+
+        <StatusBar Grid.Row="1">
+
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+                <TextBlock Text="{Binding Properties.SchemasCount, Mode=OneWay, Converter={StaticResource schemaConverter}}" />
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="{Binding Properties.CurrentFile, Mode=OneWay}" />
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <ProgressBar Value="50" Width="90" Height="16" />
+            </StatusBarItem>
+
+        </StatusBar>
 
     </Grid>
+
 </Window>

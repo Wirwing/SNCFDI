@@ -31,81 +31,517 @@ namespace SNCFDI.Model
             this.Version = "1.1";
         }
 
-        public Percepciones Percepciones { get; set; }
+        private Percepciones percepcionesField;
 
-        public Deducciones Deducciones { get; set; }
+        private Deducciones deduccionesField;
 
+        private Incapacidad[] incapacidadesField;
+
+        private NominaHorasExtra[] horasExtrasField;
+
+        private string versionField;
+
+        private string registroPatronalField;
+
+        private string numEmpleadoField;
+
+        private string cURPField;
+
+        private int tipoRegimenField;
+
+        private string numSeguridadSocialField;
+
+        private System.DateTime fechaPagoField;
+
+        private System.DateTime fechaInicialPagoField;
+
+        private System.DateTime fechaFinalPagoField;
+
+        private decimal numDiasPagadosField;
+
+        private string departamentoField;
+
+        private string cLABEField;
+
+        private int bancoField;
+
+        private bool bancoFieldSpecified;
+
+        private System.DateTime fechaInicioRelLaboralField;
+
+        private bool fechaInicioRelLaboralFieldSpecified;
+
+        private int antiguedadField;
+
+        private bool antiguedadFieldSpecified;
+
+        private string puestoField;
+
+        private string tipoContratoField;
+
+        private string tipoJornadaField;
+
+        private string periodicidadPagoField;
+
+        private decimal salarioBaseCotAporField;
+
+        private bool salarioBaseCotAporFieldSpecified;
+
+        private int riesgoPuestoField;
+
+        private bool riesgoPuestoFieldSpecified;
+
+        private decimal salarioDiarioIntegradoField;
+
+        private bool salarioDiarioIntegradoFieldSpecified;
+
+
+        /// <comentarios/>
+        public Percepciones Percepciones
+        {
+            get
+            {
+                return this.percepcionesField;
+            }
+            set
+            {
+                this.percepcionesField = value;
+            }
+        }
+
+        /// <comentarios/>
+        public Deducciones Deducciones
+        {
+            get
+            {
+                return this.deduccionesField;
+            }
+            set
+            {
+                this.deduccionesField = value;
+            }
+        }
+
+        /// <comentarios/>
         [System.Xml.Serialization.XmlArrayItemAttribute("Incapacidad", IsNullable = false)]
-        public Incapacidad[] Incapacidades { get; set; }
+        public Incapacidad[] Incapacidades
+        {
+            get
+            {
+                return this.incapacidadesField;
+            }
+            set
+            {
+                this.incapacidadesField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlArrayItemAttribute("HorasExtra", IsNullable = false)]
-        public NominaHorasExtra[] HorasExtras { get; set; }
+        public NominaHorasExtra[] HorasExtras
+        {
+            get
+            {
+                return this.horasExtrasField;
+            }
+            set
+            {
+                this.horasExtrasField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Version { get; set; }
+        public string Version
+        {
+            get
+            {
+                return this.versionField;
+            }
+            set
+            {
+                this.versionField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string RegistroPatronal { get; set; }
+        public string RegistroPatronal
+        {
+            get
+            {
+                return this.registroPatronalField;
+            }
+            set
+            {
+                this.registroPatronalField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string NumEmpleado { get; set; }
+        public string NumEmpleado
+        {
+            get
+            {
+                return this.numEmpleadoField;
+            }
+            set
+            {
+                this.numEmpleadoField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string CURP { get; set; }
+        public string CURP
+        {
+            get
+            {
+                return this.cURPField;
+            }
+            set
+            {
+                this.cURPField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int TipoRegimen { get; set; }
+        public int TipoRegimen
+        {
+            get
+            {
+                return this.tipoRegimenField;
+            }
+            set
+            {
+                this.tipoRegimenField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string NumSeguridadSocial { get; set; }
+        public string NumSeguridadSocial
+        {
+            get
+            {
+                return this.numSeguridadSocialField;
+            }
+            set
+            {
+                this.numSeguridadSocialField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
-        public System.DateTime FechaPago { get; set; }
+        public System.DateTime FechaPago
+        {
+            get
+            {
+                return this.fechaPagoField;
+            }
+            set
+            {
+                this.fechaPagoField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
-        public System.DateTime FechaInicialPago { get; set; }
+        public System.DateTime FechaInicialPago
+        {
+            get
+            {
+                return this.fechaInicialPagoField;
+            }
+            set
+            {
+                this.fechaInicialPagoField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
-        public System.DateTime FechaFinalPago { get; set; }
+        public System.DateTime FechaFinalPago
+        {
+            get
+            {
+                return this.fechaFinalPagoField;
+            }
+            set
+            {
+                this.fechaFinalPagoField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal NumDiasPagados { get; set; }
+        public decimal NumDiasPagados
+        {
+            get
+            {
+                return this.numDiasPagadosField;
+            }
+            set
+            {
+                this.numDiasPagadosField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Departamento { get; set; }
+        public string Departamento
+        {
+            get
+            {
+                return this.departamentoField;
+            }
+            set
+            {
+                this.departamentoField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "integer")]
-        public string CLABE { get; set; }
+        public string CLABE
+        {
+            get
+            {
+                return this.cLABEField;
+            }
+            set
+            {
+                this.cLABEField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Banco { get; set; }
+        public int Banco
+        {
+            get
+            {
+                return this.bancoField;
+            }
+            set
+            {
+                this.bancoField = value;
+            }
+        }
 
+        /// <comentarios/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool BancoSpecified
+        {
+            get
+            {
+                return this.bancoFieldSpecified;
+            }
+            set
+            {
+                this.bancoFieldSpecified = value;
+            }
+        }
+
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType = "date")]
-        public System.DateTime FechaInicioRelLaboral { get; set; }
+        public System.DateTime FechaInicioRelLaboral
+        {
+            get
+            {
+                return this.fechaInicioRelLaboralField;
+            }
+            set
+            {
+                this.fechaInicioRelLaboralField = value;
+            }
+        }
 
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int Antiguedad { get; set; }
+        /// <comentarios/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool FechaInicioRelLaboralSpecified
+        {
+            get
+            {
+                return this.fechaInicioRelLaboralFieldSpecified;
+            }
+            set
+            {
+                this.fechaInicioRelLaboralFieldSpecified = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Puesto { get; set; }
+        public int Antiguedad
+        {
+            get
+            {
+                return this.antiguedadField;
+            }
+            set
+            {
+                this.antiguedadField = value;
+            }
+        }
 
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TipoContrato { get; set; }
+        /// <comentarios/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool AntiguedadSpecified
+        {
+            get
+            {
+                return this.antiguedadFieldSpecified;
+            }
+            set
+            {
+                this.antiguedadFieldSpecified = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TipoJornada { get; set; }
+        public string Puesto
+        {
+            get
+            {
+                return this.puestoField;
+            }
+            set
+            {
+                this.puestoField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string PeriodicidadPago { get; set; }
+        public string TipoContrato
+        {
+            get
+            {
+                return this.tipoContratoField;
+            }
+            set
+            {
+                this.tipoContratoField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal SalarioBaseCotApor { get; set; }
+        public string TipoJornada
+        {
+            get
+            {
+                return this.tipoJornadaField;
+            }
+            set
+            {
+                this.tipoJornadaField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int RiesgoPuesto { get; set; }
+        public string PeriodicidadPago
+        {
+            get
+            {
+                return this.periodicidadPagoField;
+            }
+            set
+            {
+                this.periodicidadPagoField = value;
+            }
+        }
 
+        /// <comentarios/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal SalarioDiarioIntegrado { get; set; }
+        public decimal SalarioBaseCotApor
+        {
+            get
+            {
+                return this.salarioBaseCotAporField;
+            }
+            set
+            {
+                this.salarioBaseCotAporField = value;
+            }
+        }
+
+        /// <comentarios/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool SalarioBaseCotAporSpecified
+        {
+            get
+            {
+                return this.salarioBaseCotAporFieldSpecified;
+            }
+            set
+            {
+                this.salarioBaseCotAporFieldSpecified = value;
+            }
+        }
+
+        /// <comentarios/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int RiesgoPuesto
+        {
+            get
+            {
+                return this.riesgoPuestoField;
+            }
+            set
+            {
+                this.riesgoPuestoField = value;
+            }
+        }
+
+        /// <comentarios/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool RiesgoPuestoSpecified
+        {
+            get
+            {
+                return this.riesgoPuestoFieldSpecified;
+            }
+            set
+            {
+                this.riesgoPuestoFieldSpecified = value;
+            }
+        }
+
+        /// <comentarios/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public decimal SalarioDiarioIntegrado
+        {
+            get
+            {
+                return this.salarioDiarioIntegradoField;
+            }
+            set
+            {
+                this.salarioDiarioIntegradoField = value;
+            }
+        }
+
+        /// <comentarios/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool SalarioDiarioIntegradoSpecified
+        {
+            get
+            {
+                return this.salarioDiarioIntegradoFieldSpecified;
+            }
+            set
+            {
+                this.salarioDiarioIntegradoFieldSpecified = value;
+            }
+        }
+
 
     }
 

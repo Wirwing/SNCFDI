@@ -13,31 +13,33 @@ namespace SNCFDI.Model
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.sat.gob.mx/nomina")]
-    public partial class Deducciones
+    public partial class Percepciones
     {
-        [System.Xml.Serialization.XmlElementAttribute("Deduccion")]
-        public Deduccion[] Deduccion { get; set; }
+
+        [System.Xml.Serialization.XmlElementAttribute("Percepcion")]
+        public Percepcion[] Percepcion { get; set; }
 
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal TotalGravado { get; set; }
 
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public decimal TotalExento { get; set; }
-    }
 
+    }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.sat.gob.mx/nomina")]
-    public partial class Deduccion
+    public partial class Percepcion
     {
+
         [XmlIgnore]
         public int? NumEmpleado { get; set; }
-
+        
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TipoDeduccion { get; set; }
+        public string TipoPercepcion { get; set; }
 
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Clave { get; set; }
@@ -46,10 +48,16 @@ namespace SNCFDI.Model
         public string Concepto { get; set; }
 
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal ImporteGravado { get; set; }
+        public decimal? ImporteGravado { get; set; }
 
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal ImporteExento { get; set; }
+        public decimal? ImporteExento { get; set; }
+
+        //Ignorable values
+
+        //public bool ShouldSerializeImporteGravado() { return ImporteGravado.HasValue; }
+        //public bool ShouldSerializeImporteExento() { return ImporteExento.HasValue; }
+
 
     }
 

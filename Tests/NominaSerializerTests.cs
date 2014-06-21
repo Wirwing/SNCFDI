@@ -16,6 +16,8 @@ namespace Tests
     public class NominaSerializerTests
     {
 
+        private const String NominaSchemaFile = "Fixtures/Schemas/nomina11.xsd";
+
         private Nomina nomina;
 
         [TestInitialize]
@@ -33,7 +35,7 @@ namespace Tests
             nomina.NumDiasPagados = 7;
             nomina.Departamento = "Sistemas";
             nomina.CLABE = "123456789123456789";
-            nomina.Banco = 1.ToString("000");
+            nomina.Banco = 1;
             nomina.FechaInicioRelLaboral = new DateTime(2011, 10, 01);
             nomina.Antiguedad = 10;
             nomina.Puesto = "Lider de proyecto";
@@ -138,7 +140,7 @@ namespace Tests
             XmlSchema schema;
 
             //Read in the schema document
-            using (XmlReader schemaReader = XmlReader.Create("Fixtures/nomina11.xsd"))
+            using (XmlReader schemaReader = XmlReader.Create(NominaSchemaFile))
             {
 
                 schema = XmlSchema.Read(schemaReader, new ValidationHandler().Log);

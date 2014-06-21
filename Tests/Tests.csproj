@@ -52,10 +52,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FixtureLocation.cs" />
+    <Compile Include="Service\EmployeeValidationTests.cs" />
     <Compile Include="ValidationHandler.cs" />
     <Compile Include="ValidationTests.cs" />
     <Compile Include="NominaSerializerTests.cs" />
-    <Compile Include="ExcelReaderTest.cs" />
+    <Compile Include="Service\ExcelReaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,33 +67,35 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fixtures\cfdv32.xsd">
+    <None Include="Fixtures\Excel\Empleados.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Fixtures\Excel\Failure\Empleado_Missing_Data.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Fixtures\Schemas\cfdv32.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Fixtures\Excel\Empleado.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Fixtures\nomina11.xsd">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Fixtures\schema.xsd">
+    <None Include="Fixtures\Schemas\nomina11.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fixtures\cfdi.xml">
+    <Content Include="Fixtures\XML\cfdi.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Fixtures\cfdi_nomina.xml">
+    <Content Include="Fixtures\XML\cfdi_nomina.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Fixtures\nomina_node.xml">
+    <Content Include="Fixtures\XML\nomina_node.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Fixtures\nomina_ejemplo.xml">
+    <Content Include="Fixtures\XML\nomina_ejemplo.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

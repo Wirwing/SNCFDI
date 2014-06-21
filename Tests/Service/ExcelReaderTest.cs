@@ -4,19 +4,19 @@ using SNCFDI.Service;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Xml.Schema;
 
-namespace Tests
+namespace Tests.Service
 {
     [TestClass]
     public class ExcelReaderTest
     {
-        private const String filename = "Fixtures/Excel/Empleado.xlsx";
 
         [TestMethod]
         public void TestEmpleadoParse()
         {
 
-            ExcelReader reader = new ExcelReader(filename);
+            ExcelReader reader = new ExcelReader(FixtureLocation.SingleEmployeeFile);
 
             List<Empleado> validos;
             List<Empleado> invalidos;
@@ -42,14 +42,14 @@ namespace Tests
             Assert.AreEqual("13099903896", nomina.NumSeguridadSocial);
             Assert.AreEqual("ADMINISTRACION", nomina.Departamento);
             Assert.AreEqual("230230302302302309", nomina.CLABE);
-            Assert.AreEqual("123", nomina.Banco);
+            Assert.AreEqual(123, nomina.Banco);
             Assert.AreEqual(new DateTime(2014, 03, 15), nomina.FechaInicioRelLaboral);
             Assert.AreEqual(8, nomina.Antiguedad);
             Assert.AreEqual("Programador", nomina.Puesto);
             Assert.AreEqual("Base", nomina.TipoContrato);
             Assert.AreEqual("Mixta", nomina.TipoJornada);
             Assert.AreEqual(new Decimal(200.1), nomina.SalarioBaseCotApor);
-            Assert.AreEqual(0, nomina.RiesgoPuesto);
+            Assert.AreEqual(1, nomina.RiesgoPuesto);
             Assert.AreEqual(new Decimal(209.04), nomina.SalarioDiarioIntegrado);
 
 
@@ -59,7 +59,7 @@ namespace Tests
         public void TestPercepcionParse()
         {
 
-            ExcelReader reader = new ExcelReader(filename);
+            ExcelReader reader = new ExcelReader(FixtureLocation.SingleEmployeeFile);
 
             List<Empleado> validos;
             List<Empleado> invalidos;
@@ -89,7 +89,7 @@ namespace Tests
         public void TestDeduccionParse()
         {
 
-            ExcelReader reader = new ExcelReader(filename);
+            ExcelReader reader = new ExcelReader(FixtureLocation.SingleEmployeeFile);
 
             List<Empleado> validos;
             List<Empleado> invalidos;
@@ -118,7 +118,7 @@ namespace Tests
         public void TestIncapacidadParse()
         {
 
-            ExcelReader reader = new ExcelReader(filename);
+            ExcelReader reader = new ExcelReader(FixtureLocation.SingleEmployeeFile);
 
             List<Empleado> validos;
             List<Empleado> invalidos;
@@ -145,7 +145,7 @@ namespace Tests
         public void TestHorasExtraParse()
         {
 
-            ExcelReader reader = new ExcelReader(filename);
+            ExcelReader reader = new ExcelReader(FixtureLocation.SingleEmployeeFile);
 
             List<Empleado> validos;
             List<Empleado> invalidos;
@@ -168,7 +168,6 @@ namespace Tests
 
 
         }
-
 
     }
 }

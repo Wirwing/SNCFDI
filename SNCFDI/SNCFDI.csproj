@@ -75,14 +75,17 @@
     <Compile Include="Exception\IncompleteEmployeeDataException.cs" />
     <Compile Include="Model\Empleado.cs" />
     <Compile Include="Model\Nomina.cs" />
-    <Compile Include="Model\NominaDeducciones.cs" />
+    <Compile Include="Model\Deducciones.cs" />
     <Compile Include="Model\NominaHorasExtra.cs" />
-    <Compile Include="Model\NominaIncapacidad.cs" />
-    <Compile Include="Model\NominaPercepciones.cs" />
+    <Compile Include="Model\Incapacidad.cs" />
+    <Compile Include="Model\Percepciones.cs" />
+    <Compile Include="Service\SchemaValidatorReader.cs" />
     <Compile Include="Service\Util\HeaderValues.cs" />
     <Compile Include="Service\CellDataParser.cs" />
     <Compile Include="Service\EntityParser.cs" />
     <Compile Include="Service\ExcelReader.cs" />
+    <Compile Include="ViewModel\Converters\SchemaCountConverter.cs" />
+    <Compile Include="ViewModel\MainWindowProperties.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

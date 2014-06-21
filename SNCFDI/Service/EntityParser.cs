@@ -37,7 +37,7 @@ namespace SNCFDI.Service
             else
             {
                 empleado.ValidData = false;
-                empleado.ParsingError = "Empleado en la fila " + row.RowNum.ToString() + " no cuenta con dato NumEmpleado";
+                empleado.ParsingError.Add("Empleado en la fila " + row.RowNum.ToString() + " no cuenta con dato NumEmpleado");
                 return empleado;
             }
 
@@ -88,7 +88,7 @@ namespace SNCFDI.Service
 
             cell = row.GetCell(NominaValue.BANCO, MissingCellPolicy.RETURN_BLANK_AS_NULL);
             intValue = CellDataParser.AsInteger(cell);
-            if (intValue.HasValue) nomina.Banco = intValue.Value.ToString("000");
+            if (intValue.HasValue) nomina.Banco = intValue.Value;
             
             cell = row.GetCell(NominaValue.FECHA_INICIO_LABORAL, MissingCellPolicy.RETURN_BLANK_AS_NULL);
             dateValue = CellDataParser.AsDateTime(cell);

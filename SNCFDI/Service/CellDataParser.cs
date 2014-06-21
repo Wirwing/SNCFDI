@@ -66,7 +66,7 @@ namespace SNCFDI.Service
 
         public static decimal? AsDecimal(ICell cell)
         {
-            decimal? value = null;
+            decimal? value = new Nullable<Decimal>();
 
             if (cell != null && cell.CellType.CompareTo(CellType.Numeric) == 0)
             {
